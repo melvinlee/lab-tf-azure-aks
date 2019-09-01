@@ -3,6 +3,9 @@
 This repository contain terraform template to provision:
 
 - Azure Kubernetes Service (AKS) 
+- Nginx Ingress
+- Prometheus
+- Weave Scope
 
 ## Required Tooling
 
