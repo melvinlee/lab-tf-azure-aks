@@ -29,38 +29,6 @@ resource "tls_private_key" "key" {
   rsa_bits    = "2048"
 }
 
-resource "azurerm_virtual_network" "vnet" {
-  name                = "${var.resource_group_name}-vnet"
-  address_space       = ["10.0.0.0/16"]
-  resource_group_name = azurerm_resource_group.rg.name
-  location            = azurerm_resource_group.rg.location
-
-  tags = {
-    creationSource = var.creationSource
-    env            = var.environment
-  }
-}
-
-resource "azurerm_subnet" "frontend" {
-  name                 = "frontend"
-  resource_group_name  = azurerm_resource_group.rg.name
-  virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefix       = "10.0.1.0/28"
-}
-
-resource "azurerm_subnet" "backend" {
-  name                 = "backend"
-  resource_group_name  = azurerm_resource_group.rg.name
-  virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefix       = "10.0.2.0/24"
-}
-
-# resource "azurerm_role_assignment" "role" {
-#   scope                = "${data.azurerm_subscription.subscription.id}/resourceGroups/${azurerm_resource_group.rg.name}"
-#   role_definition_name = "Owner"
-#   principal_id         = "${var.client_id}"
-# }
-
 resource "azurerm_kubernetes_cluster" "main" {
   name       = "${var.aks_name}-k8s"
   location   = azurerm_resource_group.rg.location
