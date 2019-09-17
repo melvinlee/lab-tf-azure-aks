@@ -20,6 +20,12 @@ variable "rg_location" {
   description = "(Required) Location of the azure resource group."
 }
 
+variable "agent_pools" {
+  default = [
+    ["default", "1", "Standard_DS2_v2", "Linux", "50", "VirtualMachineScaleSets","30"]
+  ]
+}
+
 variable "agent_pool_node_count" {
   default = 2
 }
