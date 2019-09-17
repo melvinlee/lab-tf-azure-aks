@@ -4,12 +4,12 @@
 
 variable "client_id" {
   type        = "string"
-  description = "Client ID"
+  description = "(Required) Client ID"
 }
 
 variable "client_secret" {
   type        = "string"
-  description = "Client secret."
+  description = "(Required) Client secret."
 }
 
 variable "rg_name" {
@@ -21,49 +21,17 @@ variable "rg_location" {
 }
 
 variable "agent_pools" {
+  description = "list for agent_pools"
   default = [
+    # "name", "count", "vm_size", "os_type", "os_disk_size_gb", "type", "max_pods"
     ["default", "1", "Standard_DS2_v2", "Linux", "50", "VirtualMachineScaleSets","30"]
   ]
-}
-
-variable "agent_pool_node_count" {
-  default = 2
-}
-
-variable "agent_pool_vm_size" {
-  default = "Standard_DS2_v2"
-}
-
-variable "agent_pool_vm_type" {
-  default = "VirtualMachineScaleSets"
-}
-
-variable "agent_pool_os_disk_size_gb" {
-  default = 30
-}
-
-variable "agent_pool_subnet_id" {
-}
-
-variable "agent_pool_max_pods" {
-  default = 30
 }
 
 variable "aks_name" {
   type        = "string"
   description = "Name of aks cluster."
   default     = "myaks"
-}
-
-variable "environment" {
-  type        = "string"
-  description = "dev, test or production."
-  default     = "dev"
-}
-
-variable "creationSource" {
-  type    = "string"
-  default = "terraform"
 }
 
 variable "linux_admin_username" {
@@ -73,9 +41,9 @@ variable "linux_admin_username" {
 }
 
 variable "tags" {
-  description = "(Required) map of tags for the deployment"
+  description = "map of tags for the deployment"
   default = {
     environment     = "DEV"
-    creationSource  = "Terraform"
+    creationSource  = "terraform"
   }
 }
