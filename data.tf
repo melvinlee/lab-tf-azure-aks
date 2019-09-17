@@ -1,4 +1,4 @@
 #retrieve the version of Kubernetes supported by Azure Kubernetes Service.
 data "azurerm_kubernetes_service_versions" "current" {
-  location = var.resource_group_location
+  location = var.rg_location
 }

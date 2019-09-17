@@ -1,19 +1,3 @@
-resource "azurerm_resource_group" "rg" {
-  name     = "${var.resource_group_name}-rg"
-  location = var.resource_group_location
-
-  tags = {
-    creationSource = var.creationSource
-    env            = var.environment
-  }
-}
-
-#an attempt to keep the AKS name (and dns label) unique
-resource "random_integer" "random_int" {
-  min = 100
-  max = 999
-}
-
 resource "tls_private_key" "key" {
   algorithm   = "RSA"
   ecdsa_curve = "P224"
@@ -22,10 +6,10 @@ resource "tls_private_key" "key" {
 
 resource "azurerm_kubernetes_cluster" "main" {
   name       = "${var.aks_name}-k8s"
-  location   = azurerm_resource_group.rg.location
+  location   = var.rg_location
   dns_prefix = "${var.aks_name}-dns"
 
-  resource_group_name = azurerm_resource_group.rg.name
+  resource_group_name = var.rg_name
 
   linux_profile {
     admin_username = var.linux_admin_username
@@ -43,7 +27,7 @@ resource "azurerm_kubernetes_cluster" "main" {
     vm_size         = var.agent_pool_vm_size
     os_type         = "Linux"
     os_disk_size_gb = var.agent_pool_os_disk_size_gb
-    vnet_subnet_id  = var.subnet_id 
+    vnet_subnet_id  = var.agent_pool_subnet_id 
     type            = var.agent_pool_vm_type
     max_pods        = var.agent_pool_max_pods
   }

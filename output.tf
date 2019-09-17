@@ -8,7 +8,7 @@ output "kube_config" {
 }
 
 output "aks_dashboard" {
-  value = "az aks browse --resource-group ${azurerm_resource_group.rg.name} --name ${azurerm_kubernetes_cluster.main.name}"
+  value = "az aks browse --resource-group ${azurerm_kubernetes_cluster.main.resource_group_name} --name ${azurerm_kubernetes_cluster.main.name}"
 }
 
 output "config" {

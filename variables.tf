@@ -12,16 +12,12 @@ variable "client_secret" {
   description = "Client secret."
 }
 
-variable "resource_group_name" {
-  type        = "string"
-  description = "Name of the azure resource group."
-  default     = "aks"
+variable "rg_name" {
+  description = "(Required) Name of the azure resource group."
 }
 
-variable "resource_group_location" {
-  type        = "string"
-  description = "Location of the azure resource group."
-  default     = "southeastasia"
+variable "rg_location" {
+  description = "(Required) Location of the azure resource group."
 }
 
 variable "agent_pool_node_count" {
@@ -38,6 +34,9 @@ variable "agent_pool_vm_type" {
 
 variable "agent_pool_os_disk_size_gb" {
   default = 30
+}
+
+variable "agent_pool_subnet_id" {
 }
 
 variable "agent_pool_max_pods" {
