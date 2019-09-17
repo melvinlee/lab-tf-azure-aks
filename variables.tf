@@ -24,20 +24,30 @@ variable "resource_group_location" {
   default     = "southeastasia"
 }
 
+variable "agent_pool_node_count" {
+  default = 2
+}
+
+variable "agent_pool_vm_size" {
+  default = "Standard_DS2_v2"
+}
+
+variable "agent_pool_vm_type" {
+  default = "VirtualMachineScaleSets"
+}
+
+variable "agent_pool_os_disk_size_gb" {
+  default = 30
+}
+
+variable "agent_pool_max_pods" {
+  default = 30
+}
+
 variable "aks_name" {
   type        = "string"
   description = "Name of aks cluster."
   default     = "myaks"
-}
-
-variable "aks_node_count" {
-  default = 2
-}
-
-variable "acr_name" {
-  type        = "string"
-  description = "Name of azure container registry."
-  default     = "melvinhub"
 }
 
 variable "environment" {
@@ -47,8 +57,8 @@ variable "environment" {
 }
 
 variable "creationSource" {
-  type        = "string"
-  default     = "terraform"
+  type    = "string"
+  default = "terraform"
 }
 
 variable "linux_admin_username" {
