@@ -65,3 +65,11 @@ variable "linux_admin_username" {
   description = "User name for authentication to the Kubernetes linux agent virtual machines in the cluster."
   default     = "azureuser"
 }
+
+variable "tags" {
+  description = "(Required) map of tags for the deployment"
+  default = {
+    environment     = "DEV"
+    creationSource  = "Terraform"
+  }
+}

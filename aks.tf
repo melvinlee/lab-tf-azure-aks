@@ -27,7 +27,7 @@ resource "azurerm_kubernetes_cluster" "main" {
     vm_size         = var.agent_pool_vm_size
     os_type         = "Linux"
     os_disk_size_gb = var.agent_pool_os_disk_size_gb
-    vnet_subnet_id  = var.agent_pool_subnet_id 
+    vnet_subnet_id  = var.agent_pool_subnet_id
     type            = var.agent_pool_vm_type
     max_pods        = var.agent_pool_max_pods
   }
@@ -48,8 +48,5 @@ resource "azurerm_kubernetes_cluster" "main" {
     docker_bridge_cidr = "172.17.0.1/16"
   }
 
-  tags = {
-    creationSource = var.creationSource
-    env            = var.environment
-  }
+  tags = var.tags
 }
