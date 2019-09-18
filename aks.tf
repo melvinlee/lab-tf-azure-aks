@@ -44,6 +44,10 @@ resource "azurerm_kubernetes_cluster" "aks" {
       enabled                    = var.enabled_oms_agent
       log_analytics_workspace_id = var.log_analytics_workspace
     }
+
+    http_application_routing {
+      enabled = var.enable_http_application_routing
+    }
   }
 
   role_based_access_control {

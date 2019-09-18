@@ -64,6 +64,11 @@ variable "enabled_oms_agent" {
   default     = false
 }
 
+variable "enable_http_application_routing" {
+  description = "(Required) Is HTTP Application Routing Enabled? "
+  default     = false
+}
+
 variable "log_analytics_workspace" {
   description = "(Required) The ID of the Log Analytics Workspace which the OMS Agent should send data to."
 }
