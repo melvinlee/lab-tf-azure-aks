@@ -2,13 +2,17 @@
 # OUTPUTS
 ##################################################################################
 
-output "kube_config" {
-  value = "${azurerm_kubernetes_cluster.main.kube_config_raw}"
-  sensitive   = true
+output "aks" {
+  value = {
+    id = azurerm_kubernetes_cluster.aks.id
+    fqdn = azurerm_kubernetes_cluster.aks.fqdn
+    node_resource_group = azurerm_kubernetes_cluster.aks.node_resource_group
+  }
 }
 
-output "aks_dashboard" {
-  value = "az aks browse --resource-group ${azurerm_kubernetes_cluster.main.resource_group_name} --name ${azurerm_kubernetes_cluster.main.name}"
+output "kube_config" {
+  value = azurerm_kubernetes_cluster.aks.kube_config_raw
+  sensitive   = true
 }
 
 output "config" {
@@ -23,7 +27,5 @@ Test configuration using kubectl
 
 $kubectl get nodes
 
-Launch Dashboard
-$ terraform output dashboard
 CONFIGURE
 }
